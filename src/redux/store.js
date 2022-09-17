@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import projectReducer from './projectSlice';
+import devicesReducer from './devicesSlice';
 import {
   persistStore,
   persistReducer,
@@ -17,7 +18,10 @@ const persistConfig = {
   storage: localStorage,
 };
 
-const rootReducer = combineReducers({ project: projectReducer });
+const rootReducer = combineReducers({
+  project: projectReducer,
+  devices: devicesReducer,
+});
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
