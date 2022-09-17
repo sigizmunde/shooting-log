@@ -9,7 +9,7 @@ export const SharedLayout = () => {
           height: '100vh',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
+          justifyContent: 'start',
           alignItems: 'center',
         }}
       >
