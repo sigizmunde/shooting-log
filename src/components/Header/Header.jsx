@@ -20,7 +20,10 @@ const Header = () => {
         </HeaderString>
         <HeaderString>
           <div>{name}</div>
-          <div>Scene</div>
+          <div>
+            {id}
+            <button type="button">edit</button>
+          </div>
         </HeaderString>
       </HeaderContainer>
     </HeaderSection>

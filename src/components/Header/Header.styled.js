@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 
 export const HeaderSection = styled.header`
+  width: 100%;
   background-color: var(--back-color-2);
   color: var(--color-1);
 `;
 
 export const HeaderContainer = styled.div`
-  max-width: 960px;
-  padding: var(--mid-gap);
+  margin: 0 auto;
+  max-width: var(--max-width);
+  padding: var(--mid-gap) calc(var(--mid-gap) * 2);
 `;
 
 export const Title = styled.h1`
