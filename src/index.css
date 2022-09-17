@@ -1,0 +1,35 @@
+@import-normalize;
+/* bring in normalize.css styles */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  --min-gap: 12px;
+  --mid-gap: 16px;
+  --max-gap: 32px;
+  --module-size: 64px;
+  --back-color-1: #353B47;
+  --back-color-2: #525C6C;
+  --back-color-3: #8B99AF;
+  --modal-color: #rgba(217, 217, 217, 0.87);
+  --color-1: #FFF;
+  --accent-color: #FFEA7E;
+  --warning-color: #F35B5B;
+  --font-family-1: 'IBM Plex Mono', monospace;
+  --font-family-2: 'Roboto Condensed', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family-2);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: calc(19 / 16);
+  text-transform: uppercase;
+  color: var(--color-1);
+  background-color: var(--back-color-1);
+}
