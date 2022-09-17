@@ -1,4 +1,4 @@
-const { createSlice } = require('@reduxjs/toolkit');
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   id: 0,
@@ -8,18 +8,18 @@ const initialState = {
   date: new Date().toISOString(),
 };
 
-const counterSlice = createSlice({
+const projectSlice = createSlice({
   name: 'project',
   initialState,
   reducers: {
     create(state, { payload }) {
-      state = payload;
+      return { ...initialState, ...payload };
     },
     update(state, { payload }) {
-      state = { ...state, ...payload };
+      return { ...state, ...payload };
     },
   },
 });
 
-export const { create, update } = counterSlice.actions;
-export default counterSlice.reducer;
+export const { create, update } = projectSlice.actions;
+export default projectSlice.reducer;
