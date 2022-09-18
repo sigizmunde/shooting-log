@@ -23,8 +23,7 @@ const ProjectPage = () => {
         .filter(({ log }) => log.length > 0 && log[log.length - 1].stop === '')
         .map(({ id }) => id)
     );
-    console.log('running', running);
-  }, [devices, running]);
+  }, [devices]);
 
   useEffect(() => {
     if (active.length === 0) setMode('inactive');
