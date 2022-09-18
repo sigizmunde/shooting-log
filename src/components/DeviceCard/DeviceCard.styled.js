@@ -30,6 +30,31 @@ export const Caption = styled.div`
   flex-shrink: 1;
 `;
 
+export const PauseBtnOff = styled.div`
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.5);
+  background: #bb9d00;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0px 0px 4px 4px rgba(255, 255, 255, 0.25),
+    inset -2px -4px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+  cursor: pointer;
+`;
+
+export const PauseBtnOn = styled(PauseBtnOff)`
+  background: #ffd600;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0px 0px 2px 2px rgba(255, 255, 255, 0.25),
+    inset -2px -4px 4px 4px rgba(230, 138, 0, 0.5);
+  * {
+    filter: drop-shadow(0px 0px 2px #ffffff);
+  }
+`;
+
 export const IndicatorOn = styled.div`
   margin-right: calc(var(--module-size) - var(--min-gap) / 2 - 9.5px);
   width: 19px;
@@ -47,5 +72,5 @@ export const IndicatorOff = styled(IndicatorOn)`
 `;
 
 export const IndicatorPause = styled(IndicatorOn)`
-  background: #47ff00;
+  background: #ffd600;
 `;

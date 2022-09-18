@@ -13,6 +13,7 @@ const ProjectPage = () => {
   const devices = useSelector(selectors.getDevices);
   const [active, setActive] = useState([]);
   const [running, setRunning] = useState([]);
+  const [paused, setPaused] = useState([]);
   const [mode, setMode] = useState('inactive');
 
   const dispatch = useDispatch();
@@ -21,6 +22,17 @@ const ProjectPage = () => {
     setRunning(
       devices
         .filter(({ log }) => log.length > 0 && log[log.length - 1].stop === '')
+        .map(({ id }) => id)
+    );
+    setPaused(
+      devices
+        .filter(({ log, pausable }) => log.length > 0 && pausable)
+        .filter(({ log }) => {
+          const pauses = log[log.length - 1].pauses;
+          if (pauses.length > 0)
+            return pauses[pauses.length - 1].type === 'pause';
+          return false;
+        })
         .map(({ id }) => id)
     );
   }, [devices]);
@@ -36,6 +48,7 @@ const ProjectPage = () => {
         id: nanoid() + dateString,
         name: 'random DSLR' + nanoid(),
         color: 'blue',
+        pausable: !!Math.round(Math.random() * 0.85),
       })
     );
   };
@@ -91,9 +104,10 @@ const ProjectPage = () => {
       <Header />
       <SectionContainer>
         <DeviceList>
-          {devices.map(({ id, name, pic, color, log }) => {
+          {devices.map(({ id, name, pic, color, log, pausable }) => {
             let status = 'off';
             if (running.includes(id)) status = 'on';
+            if (paused.includes(id)) status = 'pause';
             return (
               <DeviceCard
                 key={id}
@@ -102,6 +116,8 @@ const ProjectPage = () => {
                 image={pic}
                 color={color}
                 status={status}
+                log={log}
+                pausable={pausable}
                 active={active.includes(id)}
                 onClick={handleSelect}
               />

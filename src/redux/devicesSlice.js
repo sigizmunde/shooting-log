@@ -13,7 +13,7 @@ const initialDevice = {
   info: '',
   pic: 'logo192.png',
   color: 'teal',
-  pauses: false,
+  pausable: false,
   timeOffset: 0,
   log: [],
 };
@@ -60,6 +60,26 @@ const devicesSlice = createSlice({
       );
       state[index].log[logIndex] = payload;
     },
+    pauseRecord(state, { payload }) {
+      // payload = {id}
+      const date = new Date().toISOString();
+      const index = state.findIndex(({ id }) => id === payload.id);
+      if (index === -1) return state;
+      state[index].log[state[index].log.length - 1].pauses.push({
+        date: date,
+        type: 'pause',
+      });
+    },
+    resumeRecord(state, { payload }) {
+      // payload = {id}
+      const date = new Date().toISOString();
+      const index = state.findIndex(({ id }) => id === payload.id);
+      if (index === -1) return state;
+      state[index].log[state[index].log.length - 1].pauses.push({
+        date: date,
+        type: 'resume',
+      });
+    },
   },
 });
 
@@ -70,5 +90,7 @@ export const {
   startRecord,
   stopRecord,
   updateRecord,
+  pauseRecord,
+  resumeRecord,
 } = devicesSlice.actions;
 export default devicesSlice.reducer;
