@@ -24,7 +24,7 @@ const ProjectPage = () => {
         .map(({ id }) => id)
     );
     console.log('running', running);
-  }, [devices]);
+  }, [devices, running]);
 
   useEffect(() => {
     if (active.length === 0) setMode('inactive');
