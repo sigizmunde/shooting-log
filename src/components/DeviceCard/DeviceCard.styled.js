@@ -42,6 +42,7 @@ export const PauseBtnOff = styled.div`
   box-shadow: inset 0px 0px 4px 4px rgba(255, 255, 255, 0.25),
     inset -2px -4px 8px rgba(0, 0, 0, 0.25);
   border-radius: 50%;
+  flex-shrink: 0;
   cursor: pointer;
 `;
 
