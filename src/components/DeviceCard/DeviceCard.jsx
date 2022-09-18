@@ -8,15 +8,16 @@ import {
 } from './DeviceCard.styled';
 
 const DeviceCard = ({
+  id,
   name,
   color = 'white',
   image,
   active = false,
   status = 'off',
-  onClick = e => console.log(e.target),
+  onClick,
 }) => {
   return (
-    <Panel active={active} onClick={onClick}>
+    <Panel active={active} onClick={() => onClick({ id, status })}>
       <Picto image={image} color={color} />
       <Caption>
         <p>{name}</p>

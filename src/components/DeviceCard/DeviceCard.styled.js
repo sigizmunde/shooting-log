@@ -10,7 +10,7 @@ export const Panel = styled.div`
   border-radius: var(--module-size);
   background-color: var(--back-color-2);
   box-shadow: ${p =>
-    p.active ? '0px 0px 16px 4px var(--accent-color)' : 'none'};
+    p.active ? '0px 0px 8px 4px var(--accent-color)' : 'none'};
 `;
 
 export const Picto = styled.div`
