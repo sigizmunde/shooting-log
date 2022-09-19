@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/shooting-log/static/css/main.fe18fb48.css",
-    "main.js": "/shooting-log/static/js/main.f3646035.js",
+    "main.js": "/shooting-log/static/js/main.edc791dc.js",
     "index.html": "/shooting-log/index.html",
     "main.fe18fb48.css.map": "/shooting-log/static/css/main.fe18fb48.css.map",
-    "main.f3646035.js.map": "/shooting-log/static/js/main.f3646035.js.map"
+    "main.edc791dc.js.map": "/shooting-log/static/js/main.edc791dc.js.map"
   },
   "entrypoints": [
     "static/css/main.fe18fb48.css",
-    "static/js/main.f3646035.js"
+    "static/js/main.edc791dc.js"
   ]
 }
