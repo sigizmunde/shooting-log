@@ -5,9 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import selectors from 'redux/selectors';
 import { nanoid } from '@reduxjs/toolkit';
 import { createDevice, startRecord, stopRecord } from 'redux/devicesSlice';
-import { SectionContainer } from 'components/UtilsMarkup/UtilsMarkup.styled';
+import {
+  LayoutContainer,
+  SectionContainer,
+} from 'components/UtilsMarkup/UtilsMarkup.styled';
 import ControlPanel from 'components/ControlPanel/ControlPanel';
 import { useEffect, useState } from 'react';
+import { generateHashColor } from 'utils/colorGenerator';
 
 const ProjectPage = () => {
   const devices = useSelector(selectors.getDevices);
@@ -47,7 +51,7 @@ const ProjectPage = () => {
       createDevice({
         id: nanoid() + dateString,
         name: 'random DSLR' + nanoid(),
-        color: 'blue',
+        color: generateHashColor(),
         pausable: !!Math.round(Math.random() * 0.85),
       })
     );
@@ -100,7 +104,7 @@ const ProjectPage = () => {
   };
 
   return (
-    <>
+    <LayoutContainer>
       <Header />
       <SectionContainer>
         <DeviceList>
@@ -134,7 +138,7 @@ const ProjectPage = () => {
         selected={active.length}
         onClick={handleControl}
       />
-    </>
+    </LayoutContainer>
   );
 };
 
