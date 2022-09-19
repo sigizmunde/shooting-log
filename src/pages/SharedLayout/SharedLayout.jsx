@@ -4,7 +4,7 @@ import React from 'react';
 export const SharedLayout = () => {
   return (
     <>
-      <div
+      {/* <div
         style={{
           height: '100vh',
           display: 'flex',
@@ -12,9 +12,9 @@ export const SharedLayout = () => {
           justifyContent: 'start',
           alignItems: 'center',
         }}
-      >
-        <Outlet />
-      </div>
+      > */}
+      <Outlet />
+      {/* </div> */}
     </>
   );
 };
