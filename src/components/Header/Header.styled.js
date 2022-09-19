@@ -13,6 +13,7 @@ export const HeaderContainer = styled.div`
 `;
 
 export const Title = styled.h1`
+  margin: 0 auto;
   font-family: var(--font-family-1);
   font-style: normal;
   font-weight: 700;

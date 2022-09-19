@@ -11,7 +11,7 @@ const initialDevice = {
   id: 0,
   name: '',
   info: '',
-  pic: 'logo192.png',
+  pic: require('image/picto/action.png'),
   color: 'teal',
   pausable: false,
   timeOffset: 0,

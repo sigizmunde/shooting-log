@@ -6,12 +6,13 @@ import selectors from 'redux/selectors';
 import { nanoid } from '@reduxjs/toolkit';
 import { createDevice, startRecord, stopRecord } from 'redux/devicesSlice';
 import {
+  Button,
   LayoutContainer,
-  SectionContainer,
 } from 'components/UtilsMarkup/UtilsMarkup.styled';
 import ControlPanel from 'components/ControlPanel/ControlPanel';
 import { useEffect, useState } from 'react';
 import { generateHashColor } from 'utils/colorGenerator';
+import DeviceOptions from 'components/DeviceOptions/DeviceOptions';
 
 const ProjectPage = () => {
   const devices = useSelector(selectors.getDevices);
@@ -106,38 +107,37 @@ const ProjectPage = () => {
   return (
     <LayoutContainer>
       <Header />
-      <SectionContainer>
-        <DeviceList>
-          {devices.map(({ id, name, pic, color, log, pausable }) => {
-            let status = 'off';
-            if (running.includes(id)) status = 'on';
-            if (paused.includes(id)) status = 'pause';
-            return (
-              <DeviceCard
-                key={id}
-                id={id}
-                name={name}
-                image={pic}
-                color={color}
-                status={status}
-                log={log}
-                pausable={pausable}
-                active={active.includes(id)}
-                onClick={handleSelect}
-              />
-            );
-          })}
-        </DeviceList>
-        <button type="button" onClick={createRandomDevice}>
-          Create one more
-        </button>
-      </SectionContainer>
+      <DeviceList>
+        {devices.map(({ id, name, pic, color, log, pausable }) => {
+          let status = 'off';
+          if (running.includes(id)) status = 'on';
+          if (paused.includes(id)) status = 'pause';
+          return (
+            <DeviceCard
+              key={id}
+              id={id}
+              name={name}
+              image={pic}
+              color={color}
+              status={status}
+              log={log}
+              pausable={pausable}
+              active={active.includes(id)}
+              onClick={handleSelect}
+            />
+          );
+        })}
+        <Button type="button" onClick={createRandomDevice}>
+          Create camera
+        </Button>
+      </DeviceList>
       <ControlPanel
         mode={mode}
         running={running.length}
         selected={active.length}
         onClick={handleControl}
       />
+      <DeviceOptions id={0} />
     </LayoutContainer>
   );
 };

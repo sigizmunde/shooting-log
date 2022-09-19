@@ -1,4 +1,5 @@
 import {
+  CreateCameraButton,
   InactiveKnob,
   Panel,
   PanelContainer,
@@ -22,6 +23,7 @@ const ControlPanel = ({ selected, running, mode, onClick }) => {
           <InactiveKnob>Choose</InactiveKnob>
         )}
         <p>{running} running</p>
+        <CreateCameraButton>+</CreateCameraButton>
       </PanelContainer>
     </Panel>
   );

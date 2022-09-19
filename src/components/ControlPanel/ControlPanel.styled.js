@@ -1,6 +1,8 @@
+import { IconButton } from 'components/UtilsMarkup/UtilsMarkup.styled';
 import styled from 'styled-components';
 
 export const Panel = styled.footer`
+  position: relative;
   margin-top: auto;
   width: 100%;
   background-color: var(--back-color-1);
@@ -9,7 +11,7 @@ export const Panel = styled.footer`
 export const PanelContainer = styled.div`
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: calc(var(--max-gap) * 2) var(--max-gap);
+  padding: var(--max-gap) var(--max-gap) calc(var(--max-gap) * 2);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -25,7 +27,7 @@ export const StartKnob = styled.div`
   align-items: center;
   font-family: var(--font-family-2);
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 16px;
   line-height: 1;
   color: #000;
@@ -51,4 +53,23 @@ export const PauseKnob = styled(StartKnob)`
   color: #ffea7e;
   background: #bb9d00;
   box-shadow: inset 0px 0px 16px rgba(255, 255, 255, 0.5);
+`;
+
+export const CreateCameraButton = styled(IconButton)`
+  --radius: calc(var(--module-size) * 1.2);
+  width: var(--radius);
+  height: var(--radius);
+  padding: 0;
+  border-radius: calc(var(--radius) / 2);
+  position: absolute;
+  right: var(--max-gap);
+  top: 0;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+
+  font-family: var(--font-family-1);
+  font-style: normal;
+  font-weight: 700;
+  font-size: calc(var(--radius) / 1.5);
+  line-height: 1.33;
 `;

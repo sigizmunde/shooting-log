@@ -20,6 +20,7 @@ export const Picto = styled.div`
   height: calc(var(--module-size) * 2 - var(--min-gap));
   border-radius: 50%;
   flex-shrink: 0;
+  overflow: hidden;
 `;
 
 export const Caption = styled.div`
