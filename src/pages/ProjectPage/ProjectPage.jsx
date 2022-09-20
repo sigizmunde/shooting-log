@@ -93,12 +93,12 @@ const ProjectPage = () => {
       switch (mode) {
         case 'start':
           dispatch(startRecord({ id: device_id }));
-          return;
+          break;
         case 'stop':
           dispatch(stopRecord({ id: device_id }));
-          return;
+          break;
         default:
-          return;
+          break;
       }
     });
     setActive([]);
