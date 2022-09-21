@@ -54,7 +54,6 @@ export const Modal = styled.div`
   transform: translate(-50%, -50%);
   width: 90%;
   max-width: 540px;
-  /* height: 50%; */
   z-index: 10;
   overflow-x: hidden;
   overflow-y: auto;
@@ -75,7 +74,7 @@ export const Backdrop = styled.div`
 export const Form = styled.form`
   padding: var(--mid-gap);
   display: grid;
-  @media screen and (min-width: 420px) {
+  @media screen and (min-width: 576px) {
     grid-template-columns: repeat(2, 1fr);
   }
   gap: var(--mid-gap);

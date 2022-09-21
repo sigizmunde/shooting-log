@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Panel = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   gap: var(--min-gap);
@@ -83,4 +84,24 @@ export const IndicatorOff = styled(IndicatorOn)`
 
 export const IndicatorPause = styled(IndicatorOn)`
   background: #ffd600;
+`;
+
+export const ExpandBtn = styled.div`
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: calc(var(--module-size) * 2);
+  /* height: calc(var(--module-size) / 4); */
+  height: auto;
+  padding-top: calc(var(--min-gap) / 2);
+  padding-bottom: calc(var(--min-gap) / 4);
+  text-align: center;
+  cursor: pointer;
+  svg {
+    margin: 0;
+    padding: 0;
+    width: var(--min-gap);
+    height: var(--min-gap);
+  }
 `;

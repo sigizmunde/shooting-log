@@ -109,8 +109,12 @@ const ProjectPage = () => {
     setActive([]);
   };
 
-  const handleDeviceOptions = id => {
+  const openDeviceOptions = id => {
     setModal({ mode: 1, id: id });
+  };
+
+  const closeModal = () => {
+    setModal({ mode: 0, id: null });
   };
 
   return (
@@ -133,6 +137,8 @@ const ProjectPage = () => {
               pausable={pausable}
               active={active.includes(id)}
               onClick={handleSelect}
+              onOptions={() => openDeviceOptions(id)}
+              expandable={true}
             />
           );
         })}
@@ -146,7 +152,9 @@ const ProjectPage = () => {
         selected={active.length}
         onClick={handleControl}
       />
-      {modal.mode === 1 && <DeviceOptions id={modal.id} />}
+      {modal.mode === 1 && (
+        <DeviceOptions id={modal.id} closeModal={closeModal} />
+      )}
     </LayoutContainer>
   );
 };

@@ -66,7 +66,6 @@ const DeviceOptions = ({ id, closeModal }) => {
           color={device.color}
           image={device.pic}
           pausable={device.pausable}
-          onClick={() => null}
         />
         <Form onSubmit={handleSubmit}>
           <label htmlFor="pic">

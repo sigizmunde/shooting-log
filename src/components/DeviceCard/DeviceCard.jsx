@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import { pauseRecord, resumeRecord } from 'redux/devicesSlice';
 import {
   Caption,
+  ExpandBtn,
   IndicatorOff,
   IndicatorOn,
   IndicatorPause,
@@ -10,6 +11,8 @@ import {
   PauseBtnOn,
   Picto,
 } from './DeviceCard.styled';
+import icons from 'image/icons.svg';
+import { Svg } from 'components/UtilsMarkup/UtilsMarkup.styled';
 
 const DeviceCard = ({
   id,
@@ -19,7 +22,9 @@ const DeviceCard = ({
   active = false,
   pausable = false,
   status = 'off',
-  onClick,
+  onClick = () => null,
+  onOptions = () => null,
+  expandable = false,
 }) => {
   const dispatch = useDispatch();
 
@@ -31,6 +36,11 @@ const DeviceCard = ({
   const pauseRec = (event, id) => {
     event.stopPropagation();
     dispatch(pauseRecord({ id }));
+  };
+
+  const openOptions = (event, id) => {
+    event.stopPropagation();
+    onOptions(id);
   };
 
   return (
@@ -51,6 +61,13 @@ const DeviceCard = ({
         <IndicatorPause />
       ) : (
         <IndicatorOff />
+      )}
+      {expandable && (
+        <ExpandBtn onClick={e => openOptions(e, id)}>
+          <Svg>
+            <use href={icons + '#icon-arrow-down'} />
+          </Svg>
+        </ExpandBtn>
       )}
     </Panel>
   );
