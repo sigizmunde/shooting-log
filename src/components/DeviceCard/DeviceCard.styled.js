@@ -16,6 +16,9 @@ export const Panel = styled.div`
 export const Picto = styled.div`
   background-color: ${p => p.color};
   background-image: url(${p => p.image});
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   width: calc(var(--module-size) * 2 - var(--min-gap));
   height: calc(var(--module-size) * 2 - var(--min-gap));
   border-radius: 50%;
@@ -29,6 +32,11 @@ export const Caption = styled.div`
   line-height: 1;
   overflow: hidden;
   flex-shrink: 1;
+  font-family: var(--font-family-2);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16;
+  color: var(--color-1);
 `;
 
 export const PauseBtnOff = styled.div`

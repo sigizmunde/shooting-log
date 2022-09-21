@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import icons from 'image/icons.svg';
 
 export const LayoutContainer = styled.div`
   display: flex;
@@ -45,21 +44,25 @@ export const Svg = styled.svg`
   fill: currentColor;
   max-width: 100%;
   max-height: 100%;
+  margin: 0;
 `;
 
 export const Modal = styled.div`
   position: fixed;
-  left: 5%;
-  right: 5%;
-  height: 50%;
+  left: 50%;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 540px;
+  /* height: 50%; */
   z-index: 10;
+  overflow-x: hidden;
   overflow-y: auto;
   padding: var(--mid-gap);
   color: var(--back-color-2);
   background-color: var(--inverted-back-color);
   border-radius: calc(var(--module-size) * 1.4);
+  backdrop-filter: blur(2px);
 `;
 
 export const Backdrop = styled.div`
@@ -70,6 +73,12 @@ export const Backdrop = styled.div`
 `;
 
 export const Form = styled.form`
+  padding: var(--mid-gap);
+  display: grid;
+  @media screen and (min-width: 420px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  gap: var(--mid-gap);
   label {
     display: block;
   }
@@ -80,12 +89,27 @@ export const Input = styled.input`
   color: var(--inverted-color);
   background-color: transparent;
   border: none;
-  ::after {
-    position: absolute;
-    left: calc(100% + var(--min-gap));
-    content: url(${icons} + '#icon-edit');
-    height: 16px;
+  :active {
+    background-color: var(--color-1);
   }
+`;
+
+export const Select = styled.select`
+  max-width: 100%;
+  color: var(--inverted-color);
+  background-color: transparent;
+  border: none;
+  :active {
+    background-color: var(--color-1);
+  }
+`;
+
+export const Textarea = styled.textarea`
+  width: 100%;
+  max-width: 100%;
+  color: var(--inverted-color);
+  background-color: transparent;
+  border: none;
   :active {
     background-color: var(--color-1);
   }

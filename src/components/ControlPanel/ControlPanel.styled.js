@@ -2,13 +2,13 @@ import { IconButton } from 'components/UtilsMarkup/UtilsMarkup.styled';
 import styled from 'styled-components';
 
 export const Panel = styled.footer`
-  position: relative;
   margin-top: auto;
   width: 100%;
   background-color: var(--back-color-1);
 `;
 
 export const PanelContainer = styled.div`
+  position: relative;
   max-width: var(--max-width);
   margin: 0 auto;
   padding: var(--max-gap) var(--max-gap) calc(var(--max-gap) * 2);

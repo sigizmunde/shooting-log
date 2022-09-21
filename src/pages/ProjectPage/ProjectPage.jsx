@@ -21,6 +21,11 @@ const ProjectPage = () => {
   const [paused, setPaused] = useState([]);
   const [mode, setMode] = useState('inactive');
 
+  const [modal, setModal] = useState({
+    mode: 0, // 0 - closed, 1 - project settings, 2 - device options
+    id: 0, // device or project id
+  });
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -104,6 +109,10 @@ const ProjectPage = () => {
     setActive([]);
   };
 
+  const handleDeviceOptions = id => {
+    setModal({ mode: 1, id: id });
+  };
+
   return (
     <LayoutContainer>
       <Header />
@@ -137,7 +146,7 @@ const ProjectPage = () => {
         selected={active.length}
         onClick={handleControl}
       />
-      <DeviceOptions id={0} />
+      {modal.mode === 1 && <DeviceOptions id={modal.id} />}
     </LayoutContainer>
   );
 };
