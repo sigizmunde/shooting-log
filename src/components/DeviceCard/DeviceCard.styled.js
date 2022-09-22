@@ -2,16 +2,20 @@ import styled from 'styled-components';
 
 export const Panel = styled.div`
   position: relative;
+  width: 100%;
+  border-radius: var(--module-size);
+  background-color: var(--back-color-2);
+  box-shadow: ${p =>
+    p.active ? '0px 0px 8px 4px var(--accent-color)' : 'none'};
+`;
+
+export const DeviceInfo = styled.div`
   display: flex;
   align-items: center;
   gap: var(--min-gap);
   width: 100%;
   min-height: calc(var(--module-size) * 2);
   padding: calc(var(--min-gap) / 2);
-  border-radius: var(--module-size);
-  background-color: var(--back-color-2);
-  box-shadow: ${p =>
-    p.active ? '0px 0px 8px 4px var(--accent-color)' : 'none'};
 `;
 
 export const Picto = styled.div`
