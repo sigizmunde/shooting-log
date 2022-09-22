@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const List = styled.section`
   flex-shrink: 1;
-  min-height: 0;
+  min-height: 30vh;
   display: flex;
   flex-direction: column;
   align-items: stretch;

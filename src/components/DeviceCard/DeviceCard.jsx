@@ -11,6 +11,7 @@ import {
   PauseBtnOff,
   PauseBtnOn,
   Picto,
+  ShrinkBtn,
 } from './DeviceCard.styled';
 import icons from 'image/icons.svg';
 import { Svg } from 'components/UtilsMarkup/UtilsMarkup.styled';
@@ -91,12 +92,18 @@ const DeviceCard = ({
         </ExpandBtn>
       )}
       {expandable && expanded && (
-        <DeviceLog
-          log={log}
-          handleOptions={() => onOptions(id)}
-          handleClose={toggleExpand}
-          handleDeleteDevice={() => handleDeleteDevice(id)}
-        />
+        <>
+          <DeviceLog
+            log={log}
+            handleOptions={() => onOptions(id)}
+            handleDeleteDevice={() => handleDeleteDevice(id)}
+          />
+          <ShrinkBtn onClick={toggleExpand}>
+            <Svg style={{ transform: 'rotate(180deg)' }}>
+              <use href={icons + '#icon-arrow-down'} />
+            </Svg>
+          </ShrinkBtn>
+        </>
       )}
     </Panel>
   );

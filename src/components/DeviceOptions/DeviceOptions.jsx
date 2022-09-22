@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import selectors from 'redux/selectors';
 import { ButtonsPanel } from './DeviceOptions.styled';
 import { updateDevice } from 'redux/devicesSlice';
+import { generateHashColor } from 'utils/colorGenerator';
 
 const pictArray = [
   { src: require('../../image/picto/cinema.png'), name: 'cinema camera' },
@@ -36,7 +37,7 @@ const DeviceOptions = ({ id, closeModal }) => {
     name: 'name',
     info: 'info',
     pic: require('../../image/picto/action.png'),
-    color: 'teal',
+    color: generateHashColor(),
     pausable: false,
   };
 

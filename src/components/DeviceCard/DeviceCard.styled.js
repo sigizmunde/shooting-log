@@ -109,3 +109,10 @@ export const ExpandBtn = styled.div`
     height: var(--min-gap);
   }
 `;
+
+export const ShrinkBtn = styled(ExpandBtn)`
+  position: static;
+  margin: 0 auto;
+  padding-bottom: calc(var(--min-gap));
+  transform: none;
+`;

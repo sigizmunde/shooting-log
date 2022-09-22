@@ -1,15 +1,7 @@
-import { Svg } from 'components/UtilsMarkup/UtilsMarkup.styled';
 import { showTime } from 'utils/dateTimeFunctions';
-import {
-  LogList,
-  Span,
-  FlexButtons,
-  OptButton,
-  ShrinkBtn,
-} from './DeviceLog.styled';
-import icons from 'image/icons.svg';
+import { LogList, Span, FlexButtons, OptButton } from './DeviceLog.styled';
 
-const DeviceLog = ({ log, handleOptions, handleClose, handleDeleteDevice }) => {
+const DeviceLog = ({ log, handleOptions, handleDeleteDevice }) => {
   return (
     <>
       {log.length > 0 && (
@@ -33,11 +25,6 @@ const DeviceLog = ({ log, handleOptions, handleClose, handleDeleteDevice }) => {
           delete device
         </OptButton>
       </FlexButtons>
-      <ShrinkBtn onClick={handleClose}>
-        <Svg style={{ transform: 'rotate(180deg)' }}>
-          <use href={icons + '#icon-arrow-down'} />
-        </Svg>
-      </ShrinkBtn>
     </>
   );
 };

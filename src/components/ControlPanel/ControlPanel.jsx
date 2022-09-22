@@ -8,7 +8,7 @@ import {
   StopKnob,
 } from './ControlPanel.styled';
 
-const ControlPanel = ({ selected, running, mode, onClick }) => {
+const ControlPanel = ({ selected, running, mode, onClick, onCreateClick }) => {
   return (
     <Panel>
       <PanelContainer>
@@ -23,7 +23,7 @@ const ControlPanel = ({ selected, running, mode, onClick }) => {
           <InactiveKnob>Choose</InactiveKnob>
         )}
         <p>{running} running</p>
-        <CreateCameraButton>+</CreateCameraButton>
+        <CreateCameraButton onClick={onCreateClick}>+</CreateCameraButton>
       </PanelContainer>
     </Panel>
   );

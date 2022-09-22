@@ -4,14 +4,10 @@ import Header from 'components/Header/Header';
 import { useDispatch, useSelector } from 'react-redux';
 import selectors from 'redux/selectors';
 import { nanoid } from '@reduxjs/toolkit';
-import { createDevice, startRecord, stopRecord } from 'redux/devicesSlice';
-import {
-  Button,
-  LayoutContainer,
-} from 'components/UtilsMarkup/UtilsMarkup.styled';
+import { startRecord, stopRecord } from 'redux/devicesSlice';
+import { LayoutContainer } from 'components/UtilsMarkup/UtilsMarkup.styled';
 import ControlPanel from 'components/ControlPanel/ControlPanel';
 import { useEffect, useState } from 'react';
-import { generateHashColor } from 'utils/colorGenerator';
 import DeviceOptions from 'components/DeviceOptions/DeviceOptions';
 
 const ProjectPage = () => {
@@ -51,16 +47,9 @@ const ProjectPage = () => {
     if (active.length === 0) setMode('inactive');
   }, [active]);
 
-  const createRandomDevice = () => {
+  const createNewDevice = () => {
     const dateString = new Date().toISOString();
-    dispatch(
-      createDevice({
-        id: nanoid() + dateString,
-        name: 'random DSLR' + nanoid(),
-        color: generateHashColor(),
-        pausable: !!Math.round(Math.random() * 0.85),
-      })
-    );
+    setModal({ mode: 2, id: dateString + nanoid() });
   };
 
   const handleSelect = ({ id, status }) => {
@@ -110,7 +99,7 @@ const ProjectPage = () => {
   };
 
   const openDeviceOptions = id => {
-    setModal({ mode: 1, id: id });
+    setModal({ mode: 2, id: id });
   };
 
   const closeModal = () => {
@@ -142,17 +131,15 @@ const ProjectPage = () => {
             />
           );
         })}
-        <Button type="button" onClick={createRandomDevice}>
-          Create camera
-        </Button>
       </DeviceList>
       <ControlPanel
         mode={mode}
         running={running.length}
         selected={active.length}
         onClick={handleControl}
+        onCreateClick={createNewDevice}
       />
-      {modal.mode === 1 && (
+      {modal.mode === 2 && (
         <DeviceOptions id={modal.id} closeModal={closeModal} />
       )}
     </LayoutContainer>

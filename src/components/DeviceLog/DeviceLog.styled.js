@@ -36,20 +36,3 @@ export const FlexButtons = styled.div`
 export const OptButton = styled(Button)`
   text-transform: none;
 `;
-
-export const ShrinkBtn = styled.div`
-  margin: 0 auto;
-  width: calc(var(--module-size) * 2);
-  /* height: calc(var(--module-size) / 4); */
-  height: auto;
-  padding-top: calc(var(--min-gap) / 2);
-  padding-bottom: calc(var(--min-gap));
-  text-align: center;
-  cursor: pointer;
-  svg {
-    margin: 0;
-    padding: 0;
-    width: var(--min-gap);
-    height: var(--min-gap);
-  }
-`;
