@@ -28,8 +28,9 @@ const devicesSlice = createSlice({
       return [...state, { ...initialDevice, ...payload }];
     },
     updateDevice(state, { payload }) {
+      // if no device id found creates new device
       const index = state.findIndex(({ id }) => id === payload.id);
-      if (index === -1) state = [...state, { ...initialDevice, ...payload }];
+      if (index === -1) return [...state, { ...initialDevice, ...payload }];
       const newState = [...state];
       newState[index] = { ...newState[index], ...payload };
       return newState;
