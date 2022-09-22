@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialLogRecord = {
   file: { name: 'no file name', confirmed: false },
-  start: new Date().toISOString(),
+  start: '',
   stop: '',
   pauses: [],
 };
@@ -39,10 +39,11 @@ const devicesSlice = createSlice({
     },
     startRecord(state, { payload }) {
       // payload = {id, file: {name, confirmed}}
+      const date = new Date().toISOString();
       const index = state.findIndex(({ id }) => id === payload.id);
       if (index === -1) return state;
       const newRecord = { ...initialLogRecord, file: payload.file };
-      state[index].log.push(newRecord);
+      state[index].log.push({ ...newRecord, start: date });
     },
     stopRecord(state, { payload }) {
       // payload = {id}
