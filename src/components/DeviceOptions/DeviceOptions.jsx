@@ -7,6 +7,8 @@ import {
   Svg,
   Backdrop,
   Button,
+  LabelInline,
+  LabelGroup,
 } from 'components/UtilsMarkup/UtilsMarkup.styled';
 import { useState } from 'react';
 import icons from 'image/icons.svg';
@@ -16,6 +18,7 @@ import selectors from 'redux/selectors';
 import { ButtonsPanel } from './DeviceOptions.styled';
 import { updateDevice } from 'redux/devicesSlice';
 import { generateHashColor } from 'utils/colorGenerator';
+import { useRef } from 'react';
 
 const pictArray = [
   { src: require('../../image/picto/cinema.png'), name: 'cinema camera' },
@@ -39,6 +42,7 @@ const DeviceOptions = ({ id, closeModal }) => {
     pic: require('../../image/picto/action.png'),
     color: generateHashColor(),
     pausable: false,
+    recLimit: 0,
   };
 
   const savedDevice =
@@ -46,7 +50,20 @@ const DeviceOptions = ({ id, closeModal }) => {
 
   const [device, setDevice] = useState(savedDevice);
 
+  const limitMinRef = useRef();
+  const limitSecRef = useRef();
+
   const handleChange = e => {
+    console.log(e.target.value);
+    if (e.target.name === 'limitMin' || e.target.name === 'limitSec') {
+      const milliseconds =
+        limitMinRef.current.value * 60000 + limitSecRef.current.value * 1000;
+      setDevice(device => ({
+        ...device,
+        recLimit: milliseconds,
+      }));
+      return;
+    }
     setDevice(device => ({ ...device, [e.target.name]: e.target.value }));
   };
 
@@ -84,7 +101,6 @@ const DeviceOptions = ({ id, closeModal }) => {
               ))}
             </Select>{' '}
           </label>
-
           <label htmlFor="pausable">
             Type
             <Select
@@ -101,7 +117,6 @@ const DeviceOptions = ({ id, closeModal }) => {
               </option>
             </Select>
           </label>
-
           <label htmlFor="name">
             Name
             <Svg height={16} width={16}>
@@ -114,7 +129,6 @@ const DeviceOptions = ({ id, closeModal }) => {
               onChange={handleChange}
             />
           </label>
-
           <label htmlFor="info">
             Info
             <Svg height={16} width={16}>
@@ -128,6 +142,45 @@ const DeviceOptions = ({ id, closeModal }) => {
               onChange={handleChange}
             />
           </label>
+          <div>
+            <p>Rec length limit (0 is no limit)</p>
+            <LabelGroup>
+              <LabelInline htmlFor="limitMin">
+                <Input
+                  type="number"
+                  id="limitMin"
+                  name="limitMin"
+                  value={Math.floor(device.recLimit / 60000)}
+                  step="1"
+                  min="0"
+                  max="60"
+                  ref={limitMinRef}
+                  onChange={handleChange}
+                />
+                min
+                <Svg height={16} width={16}>
+                  <use href={icons + '#icon-edit'} />
+                </Svg>
+              </LabelInline>
+              <LabelInline htmlFor="limitSec">
+                <Input
+                  type="number"
+                  id="limitSec"
+                  name="limitSec"
+                  value={(device.recLimit % 60000) / 1000}
+                  step="1"
+                  min="0"
+                  max="59"
+                  ref={limitSecRef}
+                  onChange={handleChange}
+                />
+                sec
+                <Svg height={16} width={16}>
+                  <use href={icons + '#icon-edit'} />
+                </Svg>
+              </LabelInline>
+            </LabelGroup>
+          </div>
           <ButtonsPanel>
             <Button type="submit">Save</Button>
             <Button type="button" onClick={closeModal}>

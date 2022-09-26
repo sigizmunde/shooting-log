@@ -14,6 +14,7 @@ const initialDevice = {
   pic: require('image/picto/action.png'),
   color: 'teal',
   pausable: false,
+  recLimit: 0,
   timeOffset: 0,
   log: [],
 };

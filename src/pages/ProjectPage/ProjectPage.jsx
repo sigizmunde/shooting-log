@@ -9,12 +9,15 @@ import { LayoutContainer } from 'components/UtilsMarkup/UtilsMarkup.styled';
 import ControlPanel from 'components/ControlPanel/ControlPanel';
 import { useEffect, useState } from 'react';
 import DeviceOptions from 'components/DeviceOptions/DeviceOptions';
+import { useCallback } from 'react';
 
 const ProjectPage = () => {
   const devices = useSelector(selectors.getDevices);
   const [active, setActive] = useState([]);
   const [running, setRunning] = useState([]);
   const [paused, setPaused] = useState([]);
+  const [currentLimits, setCurrentLimits] = useState([]);
+  const [limitWarnings, setLimitWarnings] = useState([]);
   const [mode, setMode] = useState('inactive');
 
   const [modal, setModal] = useState({
@@ -42,6 +45,35 @@ const ProjectPage = () => {
         .map(({ id }) => id)
     );
   }, [devices]);
+
+  useEffect(() => {
+    setCurrentLimits(
+      devices
+        .filter(({ recLimit }) => recLimit > 0)
+        .filter(({ id }) => running.includes(id))
+        .map(({ id, log, recLimit }) => ({
+          id,
+          recLimit,
+          start: log[log.length - 1].start,
+        }))
+    );
+  }, [devices, running]);
+
+  const checkLimits = useCallback(() => {
+    const now = new Date().getTime();
+    const idArray = currentLimits.reduce((acc, { id, recLimit, start }) => {
+      const startTime = new Date(start);
+      const correction = 5000; // to warn 5 seconds beforehand
+      if (now - startTime.getTime() > recLimit - correction) acc.push(id);
+      return acc;
+    }, []);
+    setLimitWarnings(idArray);
+  }, [currentLimits]);
+
+  useEffect(() => {
+    const timer = setInterval(checkLimits, 1000);
+    return () => clearInterval(timer);
+  }, [checkLimits]);
 
   useEffect(() => {
     if (active.length === 0) setMode('inactive');
@@ -125,6 +157,7 @@ const ProjectPage = () => {
               log={log}
               pausable={pausable}
               active={active.includes(id)}
+              warning={limitWarnings.includes(id)}
               onClick={handleSelect}
               onOptions={() => openDeviceOptions(id)}
               expandable={true}

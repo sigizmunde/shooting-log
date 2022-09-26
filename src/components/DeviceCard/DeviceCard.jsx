@@ -24,6 +24,7 @@ const DeviceCard = ({
   color = 'white',
   image,
   active = false,
+  warning = false,
   pausable = false,
   status = 'off',
   log = [],
@@ -64,7 +65,7 @@ const DeviceCard = ({
   };
 
   return (
-    <Panel active={active}>
+    <Panel active={active} warning={warning}>
       <DeviceInfo onClick={() => onClick({ id, status })}>
         <Picto image={image} color={color} />
         <Caption>

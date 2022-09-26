@@ -1,4 +1,19 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const blinkAnimation = keyframes`
+    0% {
+      background-color: var(--back-color-2);
+    }
+    25% {
+      background-color: var(--back-color-2);
+    }
+    75% {
+      background-color: var(--warning-color);
+    }
+    100% {
+      background-color: var(--back-color-2);
+    }
+  `;
 
 export const Panel = styled.div`
   position: relative;
@@ -7,6 +22,8 @@ export const Panel = styled.div`
   background-color: var(--back-color-2);
   box-shadow: ${p =>
     p.active ? '0px 0px 8px 4px var(--accent-color)' : 'none'};
+  animation: ${blinkAnimation} 1s linear infinite;
+  ${p => !p.warning && 'animation: null;'}
 `;
 
 export const DeviceInfo = styled.div`

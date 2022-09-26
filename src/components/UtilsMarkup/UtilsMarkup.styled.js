@@ -113,3 +113,12 @@ export const Textarea = styled.textarea`
     background-color: var(--color-1);
   }
 `;
+
+export const LabelGroup = styled.div`
+  display: flex;
+  gap: var(--min-gap);
+`;
+
+export const LabelInline = styled.label`
+  width: 50%;
+`;
