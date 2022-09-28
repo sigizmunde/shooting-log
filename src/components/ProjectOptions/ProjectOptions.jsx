@@ -15,11 +15,13 @@ import { createProject, updateProject } from 'redux/projectSlice';
 import selectors from 'redux/selectors';
 import { ButtonsPanel } from './ProjectOptions.styled';
 import icons from 'image/icons.svg';
+import { saveStoreToFile } from 'utils/saveToFile';
 
 const ProjectOptions = ({ closeModal }) => {
   const dispatch = useDispatch();
   const currentProject = useSelector(selectors.getProject);
   const [project, setProject] = useState(currentProject);
+  const [toggleCreate, setToggleCreate] = useState(false);
 
   const handleChange = e => {
     setProject(project => ({
@@ -30,7 +32,13 @@ const ProjectOptions = ({ closeModal }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(updateProject(project));
+    if (!toggleCreate) dispatch(updateProject(project));
+    if (toggleCreate) {
+      dispatch(createProject(project));
+      dispatch(clearDevices());
+      setToggleCreate(false);
+    }
+    closeModal();
   };
 
   const handleCreateProject = () => {
@@ -38,9 +46,20 @@ const ProjectOptions = ({ closeModal }) => {
       'This will clear your current project! Type "yes" if you sure',
       'no'
     )
-      .trim()
+      ?.trim()
       .toLowerCase();
     if (reply === 'yes') {
+      if (
+        window.confirm('Do you want to save your current project as a file?')
+      ) {
+        // Save it!
+        saveStoreToFile();
+      } else {
+        if (
+          !window.confirm('Create new project without saving the current one?')
+        )
+          return;
+      }
       const now = new Date().toISOString();
       const id = now + nanoid();
       setProject({
@@ -50,15 +69,14 @@ const ProjectOptions = ({ closeModal }) => {
         date: now,
         owner: '',
       });
-      dispatch(createProject(project));
-      dispatch(clearDevices());
+      setToggleCreate(true);
     }
   };
 
   return (
     <Backdrop>
       <Modal>
-        <H3>Project options</H3>
+        <H3>{toggleCreate ? 'Create project' : 'Project options'}</H3>
         <Form onSubmit={handleSubmit}>
           <label htmlFor="name">
             Name
@@ -85,13 +103,15 @@ const ProjectOptions = ({ closeModal }) => {
             />
           </label>
           <ButtonsPanel>
-            <Button type="submit">Save</Button>
+            <Button type="submit">{toggleCreate ? 'Create' : 'Save'}</Button>
             <Button type="button" onClick={closeModal}>
               Cancel
             </Button>
-            <Button type="button" onClick={handleCreateProject}>
-              New project
-            </Button>
+            {!toggleCreate && (
+              <Button type="button" onClick={handleCreateProject}>
+                New project
+              </Button>
+            )}
           </ButtonsPanel>
         </Form>
       </Modal>

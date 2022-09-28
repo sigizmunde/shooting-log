@@ -38,4 +38,7 @@ export const InfoLabels = styled.span`
   text-transform: lowercase;
   font-family: var(--font-family-1);
   font-weight: 700;
+  @media screen and (max-width: 575px) {
+    display: none;
+  }
 `;

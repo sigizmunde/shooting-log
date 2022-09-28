@@ -8,7 +8,7 @@ import {
 import selectors from 'redux/selectors';
 import { useSelector } from 'react-redux';
 import { IconButton, Svg } from 'components/UtilsMarkup/UtilsMarkup.styled';
-import { showTime } from 'utils/dateTimeFunctions';
+import { showDate } from 'utils/dateTimeFunctions';
 import icons from 'image/icons.svg';
 
 const Header = ({ onProjectOptions }) => {
@@ -27,7 +27,7 @@ const Header = ({ onProjectOptions }) => {
             </div>
             <div>
               <InfoLabels>Created: </InfoLabels>
-              {showTime(date)}
+              {showDate(date)}
             </div>
             {owner && (
               <div>
