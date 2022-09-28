@@ -54,7 +54,6 @@ const DeviceOptions = ({ id, closeModal }) => {
   const limitSecRef = useRef();
 
   const handleChange = e => {
-    console.log(e.target.value);
     if (e.target.name === 'limitMin' || e.target.name === 'limitSec') {
       const milliseconds =
         limitMinRef.current.value * 60000 + limitSecRef.current.value * 1000;
