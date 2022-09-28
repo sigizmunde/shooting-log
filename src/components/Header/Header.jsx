@@ -2,28 +2,42 @@ import {
   HeaderContainer,
   HeaderSection,
   HeaderString,
+  InfoLabels,
   Title,
 } from './Header.styled';
 import selectors from 'redux/selectors';
 import { useSelector } from 'react-redux';
-import icons from 'image/icons.svg';
 import { IconButton, Svg } from 'components/UtilsMarkup/UtilsMarkup.styled';
+import { showTime } from 'utils/dateTimeFunctions';
+import icons from 'image/icons.svg';
 
-const Header = () => {
+const Header = ({ onProjectOptions }) => {
   const { name, owner, date } = useSelector(selectors.getProject);
 
   return (
     <HeaderSection>
       <HeaderContainer>
         <Title>Shooting Log</Title>
+
         <HeaderString>
-          <div>{date}</div>
-          <div>{owner}</div>
-        </HeaderString>
-        <HeaderString>
-          <div>{name}</div>
           <div>
-            <IconButton type="button">
+            <div>
+              <InfoLabels>Project: </InfoLabels>
+              {name}
+            </div>
+            <div>
+              <InfoLabels>Created: </InfoLabels>
+              {showTime(date)}
+            </div>
+            {owner && (
+              <div>
+                <InfoLabels>Project owner: </InfoLabels>
+                {owner}
+              </div>
+            )}
+          </div>{' '}
+          <div>
+            <IconButton type="button" onClick={onProjectOptions}>
               <Svg>
                 <use href={icons + '#icon-settings'} />
               </Svg>

@@ -10,6 +10,7 @@ import ControlPanel from 'components/ControlPanel/ControlPanel';
 import { useEffect, useState } from 'react';
 import DeviceOptions from 'components/DeviceOptions/DeviceOptions';
 import { useCallback } from 'react';
+import ProjectOptions from 'components/ProjectOptions/ProjectOptions';
 
 const ProjectPage = () => {
   const devices = useSelector(selectors.getDevices);
@@ -134,13 +135,17 @@ const ProjectPage = () => {
     setModal({ mode: 2, id: id });
   };
 
+  const openProjectOptions = () => {
+    setModal({ mode: 1 });
+  };
+
   const closeModal = () => {
     setModal({ mode: 0, id: null });
   };
 
   return (
     <LayoutContainer>
-      <Header />
+      <Header onProjectOptions={openProjectOptions} />
       <DeviceList>
         {devices.map(({ id, name, pic, color, log, pausable }) => {
           let status = 'off';
@@ -175,6 +180,7 @@ const ProjectPage = () => {
       {modal.mode === 2 && (
         <DeviceOptions id={modal.id} closeModal={closeModal} />
       )}
+      {modal.mode === 1 && <ProjectOptions closeModal={closeModal} />}
     </LayoutContainer>
   );
 };

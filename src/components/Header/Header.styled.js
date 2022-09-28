@@ -29,6 +29,13 @@ export const HeaderString = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   gap: (--min-gap);
+`;
+
+export const InfoLabels = styled.span`
+  color: var(--back-color-3);
+  text-transform: lowercase;
+  font-family: var(--font-family-1);
+  font-weight: 700;
 `;

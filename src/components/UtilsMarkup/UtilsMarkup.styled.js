@@ -122,3 +122,16 @@ export const LabelGroup = styled.div`
 export const LabelInline = styled.label`
   width: 50%;
 `;
+
+export const H3 = styled.h3`
+  font-family: var(--font-family-1);
+  font-weight: 700;
+  text-align: center;
+`;
+
+export const H2 = styled.h3`
+  font-size: calc(var(--font-size) * 1.5);
+  font-family: var(--font-family-1);
+  font-weight: 700;
+  text-align: center;
+`;

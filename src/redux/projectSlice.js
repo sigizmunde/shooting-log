@@ -12,14 +12,14 @@ const projectSlice = createSlice({
   name: 'project',
   initialState,
   reducers: {
-    create(_, { payload }) {
+    createProject(_, { payload }) {
       return { ...initialState, ...payload };
     },
-    update(state, { payload }) {
+    updateProject(state, { payload }) {
       return { ...state, ...payload };
     },
   },
 });
 
-export const { create, update } = projectSlice.actions;
+export const { createProject, updateProject } = projectSlice.actions;
 export default projectSlice.reducer;
