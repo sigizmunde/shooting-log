@@ -57,7 +57,7 @@ const DeviceCard = ({
 
   const handleDeleteDevice = id => {
     const reply = prompt('Are you sure? Type "yes" to delete device', 'no')
-      .trim()
+      ?.trim()
       .toLowerCase();
     if (reply === 'yes') {
       dispatch(removeDevice({ id }));
