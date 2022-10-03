@@ -10,8 +10,10 @@ import { useSelector } from 'react-redux';
 import { IconButton, Svg } from 'components/UtilsMarkup/UtilsMarkup.styled';
 import { showDate } from 'utils/dateTimeFunctions';
 import icons from 'image/icons.svg';
+import { useNavigate } from 'react-router-dom';
 
 const Header = ({ onProjectOptions }) => {
+  const navigate = useNavigate();
   const { name, owner, date } = useSelector(selectors.getProject);
 
   return (
@@ -37,6 +39,9 @@ const Header = ({ onProjectOptions }) => {
             )}
           </div>{' '}
           <div>
+            <IconButton type="button" onClick={() => navigate('/graph')}>
+              G
+            </IconButton>
             <IconButton type="button" onClick={onProjectOptions}>
               <Svg>
                 <use href={icons + '#icon-settings'} />

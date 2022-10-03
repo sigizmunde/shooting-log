@@ -20,3 +20,8 @@ export const showUnderlinedDate = UTCString => {
     .padStart(2, '0')}_${date.getDate().toString().padStart(2, '0')}`;
   return stringifiedDate;
 };
+
+export const UTCStringToMillisecs = UTCString => {
+  const date = new Date(UTCString);
+  return date.getTime();
+};
