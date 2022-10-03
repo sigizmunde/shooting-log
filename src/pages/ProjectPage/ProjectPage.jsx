@@ -144,7 +144,7 @@ const ProjectPage = () => {
   };
 
   return (
-    <LayoutContainer>
+    <LayoutContainer style={{ maxHeight: window.innerHeight }}>
       <Header onProjectOptions={openProjectOptions} />
       <DeviceList>
         {devices.map(({ id, name, pic, color, log, pausable }) => {

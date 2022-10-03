@@ -25,7 +25,7 @@ const GraphPage = () => {
   };
 
   return (
-    <LayoutContainer>
+    <LayoutContainer style={{ maxHeight: window.innerHeight }}>
       {' '}
       <>
         <h2>Time graph for {currentProject.name}</h2>
