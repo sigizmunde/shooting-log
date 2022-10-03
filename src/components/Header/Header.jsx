@@ -7,7 +7,11 @@ import {
 } from './Header.styled';
 import selectors from 'redux/selectors';
 import { useSelector } from 'react-redux';
-import { IconButton, Svg } from 'components/UtilsMarkup/UtilsMarkup.styled';
+import {
+  DivFlex,
+  IconButton,
+  Svg,
+} from 'components/UtilsMarkup/UtilsMarkup.styled';
 import { showDate } from 'utils/dateTimeFunctions';
 import icons from 'image/icons.svg';
 import { useNavigate } from 'react-router-dom';
@@ -38,16 +42,18 @@ const Header = ({ onProjectOptions }) => {
               </div>
             )}
           </div>{' '}
-          <div>
+          <DivFlex>
             <IconButton type="button" onClick={() => navigate('/graph')}>
-              G
+              <Svg>
+                <use href={icons + '#icon-graph'} />
+              </Svg>
             </IconButton>
             <IconButton type="button" onClick={onProjectOptions}>
               <Svg>
                 <use href={icons + '#icon-settings'} />
               </Svg>
             </IconButton>
-          </div>
+          </DivFlex>
         </HeaderString>
       </HeaderContainer>
     </HeaderSection>

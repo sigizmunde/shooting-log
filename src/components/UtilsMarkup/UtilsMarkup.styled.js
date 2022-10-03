@@ -137,3 +137,8 @@ export const H2 = styled.h3`
   font-weight: 700;
   text-align: center;
 `;
+
+export const DivFlex = styled.div`
+  display: flex;
+  gap: var(--min-gap);
+`;

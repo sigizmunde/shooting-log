@@ -1,14 +1,23 @@
 import Graph from 'components/Graph/Graph';
 import {
+  H2,
   IconButton,
   LayoutContainer,
+  Svg,
 } from 'components/UtilsMarkup/UtilsMarkup.styled';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import selectors from 'redux/selectors';
-import { GraphContainer, GraphControlsContainer } from './GraphPage.styled';
+import {
+  GraphContainer,
+  GraphControlsContainer,
+  GraphHeader,
+} from './GraphPage.styled';
+import icons from '../../image/icons.svg';
+import { useNavigate } from 'react-router-dom';
 
 const GraphPage = () => {
+  const navigate = useNavigate();
   const currentProject = useSelector(selectors.getProject);
   const [scale, setScale] = useState(100);
 
@@ -28,7 +37,14 @@ const GraphPage = () => {
     <LayoutContainer style={{ maxHeight: window.innerHeight }}>
       {' '}
       <>
-        <h2>Time graph for {currentProject.name}</h2>
+        <GraphHeader>
+          <IconButton type="button" onClick={() => navigate(-1)}>
+            <Svg style={{ transform: 'rotate(90deg)', paddingTop: '4px' }}>
+              <use href={icons + '#icon-arrow-down'} />
+            </Svg>
+          </IconButton>
+          <H2>Time graph for {currentProject.name}</H2>
+        </GraphHeader>
         <GraphContainer>
           <Graph scale={scale} />{' '}
         </GraphContainer>

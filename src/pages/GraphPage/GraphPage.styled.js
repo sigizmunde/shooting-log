@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const GraphHeader = styled.div`
+  display: flex;
+  align-items: center;
+  gap: var(--min-gap);
+  padding: var(--min-gap);
+`;
+
 export const GraphContainer = styled.div`
   width: 100%;
   height: 100%;
