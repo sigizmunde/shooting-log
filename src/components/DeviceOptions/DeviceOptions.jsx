@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import selectors from 'redux/selectors';
 import { ButtonsPanel } from './DeviceOptions.styled';
 import { updateDevice } from 'redux/devicesSlice';
-import { generateHashColor } from 'utils/colorGenerator';
+import { generateHashColor } from 'utils/colorFunctions';
 import { useRef } from 'react';
 
 const pictArray = [

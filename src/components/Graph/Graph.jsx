@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { showTime, UTCStringToMillisecs } from 'utils/dateTimeFunctions';
 import GraphGrid from './GraphGrid/GraphGrid';
+import GraphStrip from './GraphStrip/GraphStrip';
 
 const graphSettings = {
   height: 1000,
@@ -99,7 +100,7 @@ const Graph = ({ scale, onReady }) => {
                   scaledWidth
                 );
                 return (
-                  <rect
+                  <GraphStrip
                     key={device.id + startX}
                     x={startX + paddingV}
                     y={rowY + paddingH}
@@ -107,21 +108,27 @@ const Graph = ({ scale, onReady }) => {
                     height={rowHeight * stripHeight}
                     fill={device.color}
                     rx={4}
+                    deviceName={device.name}
+                    name={record.file?.name || 'no name'}
+                    startCaption={showTime(record.start)}
+                    stopCaption={showTime(record.stop)}
                   />
                 );
               });
               return rowRectArr;
             })}
         </g>
-        <GraphGrid
-          min={timeBoundaries.min}
-          max={timeBoundaries.max}
-          x={paddingH}
-          y={paddingV}
-          width={scaledWidth}
-          height={height}
-          density={100}
-        />
+        {timeBoundaries.max && (
+          <GraphGrid
+            min={timeBoundaries.min}
+            max={timeBoundaries.max}
+            x={paddingH}
+            y={paddingV}
+            width={scaledWidth}
+            height={height}
+            density={100}
+          />
+        )}
       </svg>
     </>
   );
