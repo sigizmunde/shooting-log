@@ -70,7 +70,7 @@ export const Backdrop = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
-  color: #0000007f;
+  background-color: #0000007f;
 `;
 
 export const Form = styled.form`
