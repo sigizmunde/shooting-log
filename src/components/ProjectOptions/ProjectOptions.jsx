@@ -52,7 +52,6 @@ const ProjectOptions = ({ closeModal }) => {
       if (
         window.confirm('Do you want to save your current project as a file?')
       ) {
-        // Save it!
         saveStoreToFile();
       } else {
         if (
@@ -77,7 +76,7 @@ const ProjectOptions = ({ closeModal }) => {
     <Backdrop>
       <Modal>
         <H3>{toggleCreate ? 'Create project' : 'Project options'}</H3>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} autocomplete="off">
           <label htmlFor="name">
             Name
             <Svg height={16} width={16}>

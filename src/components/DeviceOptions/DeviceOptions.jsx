@@ -84,7 +84,7 @@ const DeviceOptions = ({ id, closeModal }) => {
           image={device.pic}
           pausable={device.pausable}
         />
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} autocomplete="off">
           <label htmlFor="pic">
             Icon
             <Select
