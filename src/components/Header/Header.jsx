@@ -15,10 +15,27 @@ import {
 import { showDate } from 'utils/dateTimeFunctions';
 import icons from 'image/icons.svg';
 import { useNavigate } from 'react-router-dom';
+import { saveStoreToFile } from 'utils/saveToFile';
+import Menu from 'components/Menu/Menu';
 
 const Header = ({ onProjectOptions }) => {
   const navigate = useNavigate();
   const { name, owner, date } = useSelector(selectors.getProject);
+
+  const saveFile = () => {
+    if (window.confirm('This will save a log file to your device'))
+      saveStoreToFile();
+  };
+
+  const openFile = () => {
+    alert('loading file function is running');
+  };
+
+  const menuItems = [
+    ['Project settings', onProjectOptions],
+    ['Save to file', saveFile],
+    ['Open from file', openFile],
+  ];
 
   return (
     <HeaderSection>
@@ -48,11 +65,7 @@ const Header = ({ onProjectOptions }) => {
                 <use href={icons + '#icon-graph'} />
               </Svg>
             </IconButton>
-            <IconButton type="button" onClick={onProjectOptions}>
-              <Svg>
-                <use href={icons + '#icon-settings'} />
-              </Svg>
-            </IconButton>
+            <Menu menuItems={menuItems} menuAlign="right" />
           </DivFlex>
         </HeaderString>
       </HeaderContainer>
