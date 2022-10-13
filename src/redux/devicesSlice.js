@@ -29,6 +29,9 @@ const devicesSlice = createSlice({
       const newState = [];
       return newState;
     },
+    setDevices(_, { payload }) {
+      return payload;
+    },
     createDevice(state, { payload }) {
       return [...state, { ...initialDevice, ...payload }];
     },
@@ -92,6 +95,7 @@ const devicesSlice = createSlice({
 
 export const {
   clearDevices,
+  setDevices,
   createDevice,
   updateDevice,
   removeDevice,

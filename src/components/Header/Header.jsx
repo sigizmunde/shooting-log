@@ -17,6 +17,7 @@ import icons from 'image/icons.svg';
 import { useNavigate } from 'react-router-dom';
 import { saveStoreToFile } from 'utils/saveToFile';
 import Menu from 'components/Menu/Menu';
+import { loadStoreFromFile } from 'utils/loadFromFile';
 
 const Header = ({ onProjectOptions }) => {
   const navigate = useNavigate();
@@ -28,7 +29,13 @@ const Header = ({ onProjectOptions }) => {
   };
 
   const openFile = () => {
-    alert('loading file function is running');
+    if (
+      window
+        .prompt('This will close current project. Type "yes" to proceed')
+        .toLowerCase()
+        .trim() === 'yes'
+    )
+      loadStoreFromFile();
   };
 
   const menuItems = [
