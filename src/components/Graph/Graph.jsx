@@ -51,7 +51,6 @@ const Graph = ({ scale, onReady }) => {
         }
       });
     });
-    console.log(showTime(tempTime.min), showTime(tempTime.max));
     setTimeBoundries(tempTime);
   }, [devices]);
 

@@ -14,6 +14,5 @@ export const checkHashColorLightness = (colorString, treshold = 127) => {
     b: parseInt(colorString.slice(5), 16),
   };
   const avg = (r + g + b) / 3;
-  console.log(avg);
   return avg > treshold;
 };
