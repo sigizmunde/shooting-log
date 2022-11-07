@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { nanoid } from '@reduxjs/toolkit';
 
 const initialLogRecord = {
+  rec_id: null,
   file: { name: 'no file name', confirmed: false },
   start: '',
   stop: '',
@@ -52,7 +54,7 @@ const devicesSlice = createSlice({
       const index = state.findIndex(({ id }) => id === payload.id);
       if (index === -1) return state;
       const newRecord = { ...initialLogRecord, file: payload.file };
-      state[index].log.push({ ...newRecord, start: date });
+      state[index].log.push({ ...newRecord, rec_id: nanoid(12), start: date });
     },
     stopRecord(state, { payload }) {
       // payload = {id}
@@ -62,11 +64,11 @@ const devicesSlice = createSlice({
       state[index].log[state[index].log.length - 1].stop = date;
     },
     updateRecord(state, { payload }) {
-      // payload = {id, start, ...}
+      // payload = {id, rec_id, ...}
       const index = state.findIndex(({ id }) => id === payload.id);
       if (index === -1) return state;
       const logIndex = state[index].log.findIndex(
-        ({ start }) => start === payload.start
+        ({ rec_id }) => rec_id === payload.rec_id
       );
       state[index].log[logIndex] = payload;
     },
