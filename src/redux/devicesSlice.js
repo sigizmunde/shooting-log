@@ -64,13 +64,18 @@ const devicesSlice = createSlice({
       state[index].log[state[index].log.length - 1].stop = date;
     },
     updateRecord(state, { payload }) {
-      // payload = {id, rec_id, ...}
+      // payload = {id, record<rec_id, ...>}
       const index = state.findIndex(({ id }) => id === payload.id);
       if (index === -1) return state;
       const logIndex = state[index].log.findIndex(
-        ({ rec_id }) => rec_id === payload.rec_id
+        ({ rec_id }) => rec_id === payload.record.rec_id
       );
-      state[index].log[logIndex] = payload;
+      //////// error here?
+      if (logIndex === -1) return state;
+      state[index].log[logIndex] = {
+        ...state[index].log[logIndex],
+        ...payload.record,
+      };
     },
     pauseRecord(state, { payload }) {
       // payload = {id}
