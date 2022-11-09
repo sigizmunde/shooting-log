@@ -1,19 +1,26 @@
-import { showTime } from 'utils/dateTimeFunctions';
-import { LogList, Span, FlexButtons, OptButton } from './DeviceLog.styled';
+import LogItem from 'components/LogItem/LogItem';
+import { useDispatch } from 'react-redux';
+import { removeDevice } from 'redux/devicesSlice';
+import { LogList, FlexButtons, OptButton } from './DeviceLog.styled';
 
-const DeviceLog = ({ log, handleOptions, handleDeleteDevice }) => {
+const DeviceLog = ({ id, log, handleOptions }) => {
+  const dispatch = useDispatch();
+
+  const handleDeleteDevice = () => {
+    const reply = prompt('Are you sure? Type "yes" to delete device', 'no')
+      ?.trim()
+      .toLowerCase();
+    if (reply === 'yes') {
+      dispatch(removeDevice({ id }));
+    }
+  };
+
   return (
     <>
       {log.length > 0 && (
         <LogList>
           {log.map(item => (
-            <li key={item.start}>
-              <Span highlighted={!item.file?.confirmed}>
-                {item.file?.name || 'no name'}
-              </Span>
-              <Span>{showTime(item.start)}</Span> -
-              <Span>{item.stop ? showTime(item.stop) : '---'}</Span>
-            </li>
+            <LogItem key={item.rec_id} id={id} item={item} />
           ))}
         </LogList>
       )}

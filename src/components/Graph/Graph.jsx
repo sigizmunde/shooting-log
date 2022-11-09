@@ -100,7 +100,7 @@ const Graph = ({ scale, onReady }) => {
                 );
                 return (
                   <GraphStrip
-                    key={device.id + startX}
+                    key={record.rec_id}
                     x={startX + paddingV}
                     y={rowY + paddingH}
                     width={stopX - startX}

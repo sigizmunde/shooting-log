@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { pauseRecord, removeDevice, resumeRecord } from 'redux/devicesSlice';
+import { pauseRecord, resumeRecord } from 'redux/devicesSlice';
 import {
   Caption,
   DeviceInfo,
@@ -55,15 +55,6 @@ const DeviceCard = ({
     setExpanded(expanded => !expanded);
   };
 
-  const handleDeleteDevice = id => {
-    const reply = prompt('Are you sure? Type "yes" to delete device', 'no')
-      ?.trim()
-      .toLowerCase();
-    if (reply === 'yes') {
-      dispatch(removeDevice({ id }));
-    }
-  };
-
   return (
     <Panel active={active} warning={warning}>
       <DeviceInfo onClick={() => onClick({ id, status })}>
@@ -94,11 +85,7 @@ const DeviceCard = ({
       )}
       {expandable && expanded && (
         <>
-          <DeviceLog
-            log={log}
-            handleOptions={() => onOptions(id)}
-            handleDeleteDevice={() => handleDeleteDevice(id)}
-          />
+          <DeviceLog id={id} log={log} handleOptions={() => onOptions(id)} />
           <ShrinkBtn onClick={toggleExpand}>
             <Svg style={{ transform: 'rotate(180deg)' }}>
               <use href={icons + '#icon-arrow-down'} />
