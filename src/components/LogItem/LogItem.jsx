@@ -9,7 +9,6 @@ const LogItem = ({ id, item }) => {
 
   const handleChange = ({ ...properties }) => {
     const record = { ...item, ...properties };
-    console.log({ id, record });
     dispatch(updateRecord({ id, record }));
   };
 
