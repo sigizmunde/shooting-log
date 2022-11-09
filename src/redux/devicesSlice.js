@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { nanoid } from '@reduxjs/toolkit';
+import predictFileName from 'utils/predictFileName';
 
 const initialLogRecord = {
   rec_id: null,
@@ -53,8 +54,16 @@ const devicesSlice = createSlice({
       const date = new Date().toISOString();
       const index = state.findIndex(({ id }) => id === payload.id);
       if (index === -1) return state;
-      const newRecord = { ...initialLogRecord, file: payload.file };
-      state[index].log.push({ ...newRecord, rec_id: nanoid(12), start: date });
+      const currentLog = state[index].log;
+      const predictedName = predictFileName(
+        currentLog[currentLog.length - 1]?.file.name || null
+      );
+      const predictedFile = { name: predictedName, confirmed: false };
+      const newRecord = {
+        ...initialLogRecord,
+        file: payload.file || predictedFile,
+      };
+      currentLog.push({ ...newRecord, rec_id: nanoid(12), start: date });
     },
     stopRecord(state, { payload }) {
       // payload = {id}
@@ -67,15 +76,24 @@ const devicesSlice = createSlice({
       // payload = {id, record<rec_id, ...>}
       const index = state.findIndex(({ id }) => id === payload.id);
       if (index === -1) return state;
-      const logIndex = state[index].log.findIndex(
+      const currentLog = state[index].log;
+      const logIndex = currentLog.findIndex(
         ({ rec_id }) => rec_id === payload.record.rec_id
       );
-      //////// error here?
       if (logIndex === -1) return state;
-      state[index].log[logIndex] = {
-        ...state[index].log[logIndex],
+      currentLog[logIndex] = {
+        ...currentLog[logIndex],
         ...payload.record,
       };
+      // suggesting names for the following records
+      for (let i = logIndex + 1; i < currentLog.length; i += 1) {
+        if (currentLog.file && currentLog.file.confirmed) break;
+        const newName = predictFileName(currentLog[i - 1].file.name);
+        currentLog[i] = {
+          ...currentLog[i],
+          file: { name: newName, confirmed: false },
+        };
+      }
     },
     pauseRecord(state, { payload }) {
       // payload = {id}

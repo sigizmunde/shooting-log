@@ -11,3 +11,7 @@ export const Span = styled.span`
     margin-right: auto;
   }
 `;
+
+export const Input = styled.input`
+  width: 100%;
+`;

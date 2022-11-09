@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Span } from './HiddenInput.styled';
+import { Input, Span } from './HiddenInput.styled';
 
 const HiddenInput = ({ value, highlighted, onChange }) => {
   const [edit, setEdit] = useState(false);
@@ -29,7 +29,7 @@ const HiddenInput = ({ value, highlighted, onChange }) => {
       )}
       {edit && (
         <form onSubmit={submitChanges}>
-          <input
+          <Input
             value={inputValue}
             onChange={handleChange}
             onBlur={discardChanges}
