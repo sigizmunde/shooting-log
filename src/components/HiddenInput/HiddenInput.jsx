@@ -20,16 +20,21 @@ const HiddenInput = ({ value, highlighted, onChange }) => {
     setEdit(false);
   };
 
+  const handleClick = () => {
+    setEdit(true);
+  };
+
   return (
     <>
       {!edit && (
-        <Span highlighted={highlighted} onClick={() => setEdit(true)}>
+        <Span highlighted={highlighted} onClick={handleClick}>
           {value}
         </Span>
       )}
       {edit && (
         <form onSubmit={submitChanges}>
           <Input
+            autoFocus
             value={inputValue}
             onChange={handleChange}
             onBlur={discardChanges}
